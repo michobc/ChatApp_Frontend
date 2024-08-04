@@ -1,0 +1,109 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height */
+    width: 100%;
+}
+
+.chat-history {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+    word-break: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
+.sender {
+    align-self: flex-end;
+    background-color: #d0f0c0; /* Light green */
+}
+
+.receiver {
+    align-self: flex-start;
+    background-color: #f0f0f0; /* Light gray */
+}
+
+.message-username {
+    font-size: 12px;
+    color: #555; /* Slightly darker gray */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.message-text {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.message-timestamp {
+    font-size: 12px;
+    color: #888; /* Subtle gray color */
+    text-align: right;
+    margin-top: 5px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for a modern look */
+}
+
+.input-container input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 30px; /* Rounded corners for a modern look */
+    margin-right: 10px;
+    font-size: 16px; /* Larger text for better readability */
+    outline: none; /* Remove default outline */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.input-container input:focus {
+    border-color: #007bff; /* Highlight border color on focus */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle shadow on focus */
+}
+
+.input-container button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px; /* Match rounded corners of input */
+    background-color: #33bb60; /* Bootstrap primary color */
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px; /* Larger text for better readability */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+.input-container button:hover {
+    background-color: #27d600; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.input-container button:active {
+    transform: scale(1); /* Reset size on click */
+}
+.receiver-info {
+    background-color: #b0eb9c; /* Primary color */
+    color: #4e524e;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px solid #62d85e; /* Slightly darker border */
+}
