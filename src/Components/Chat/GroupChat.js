@@ -10,6 +10,14 @@ const GroupChat = () => {
     const [messages, setMessages] = useState([]);
     const connectionRef = useRef(null);
     const navigate = useNavigate();
+    const endOfMessagesRef = useRef(null);
+
+    useEffect(() => {
+        // Scroll to the bottom of the messages when they change
+        if (endOfMessagesRef.current) {
+            endOfMessagesRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages]);
 
     useEffect(() => {
         const connect = async () => {
@@ -81,6 +89,7 @@ const GroupChat = () => {
                         <div className="message-timestamp">{formatTimestamp(msg.timestamp)}</div>
                     </div>
                 ))}
+                <div ref={endOfMessagesRef} />
             </div>
             <div className="input-container">
                 <input

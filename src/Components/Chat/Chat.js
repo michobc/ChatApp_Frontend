@@ -3,13 +3,37 @@ import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import './Chat.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { formatTimestamp } from '../../Algorithms/calculatTime';
+import grpcService from '../../gRPC/grpcService';
 
 const Chat = () => {
     const { senderId, receiverId } = useParams();
     const [text, setText] = useState('');
     const [messages, setMessages] = useState([]);
+    const [fetchedMess, setFetchedMess] = useState([]);
     const connectionRef = useRef(null);
     const navigate = useNavigate();
+    const endOfMessagesRef = useRef(null);
+
+    useEffect(() => {
+        // Fetch messages on component mount
+        const fetchMessages = async () => {
+            try {
+                // Fetch chat history from both directions
+                const senderMessages = await grpcService.getChatHistory(senderId, receiverId);
+                const receiverMessages = await grpcService.getChatHistory(receiverId, senderId);
+
+                // Combine and sort messages
+                const allMessages = [...senderMessages, ...receiverMessages];
+                const sortedMessages = allMessages.sort((a, b) => new Date(a.getTimestamp()) - new Date(b.getTimestamp()));
+
+                setFetchedMess(sortedMessages);
+            } catch (err) {
+                console.error('Error fetching chat history: ', err);
+            }
+        };
+
+        fetchMessages();
+    }, [senderId, receiverId]);
 
     useEffect(() => {
         const connect = async () => {
@@ -49,6 +73,13 @@ const Chat = () => {
         };
     }, [senderId, receiverId]);    
 
+    useEffect(() => {
+        // Scroll to the bottom of the messages when they change
+        if (endOfMessagesRef.current) {
+            endOfMessagesRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages, fetchedMess]);
+
     const handleSendMessage = async () => {
         const conn = connectionRef.current;
         if (conn) {
@@ -74,6 +105,17 @@ const Chat = () => {
                 {receiverId}
             </div>
             <div className="chat-history">
+                {fetchedMess.map((msg, index) => (
+                    <div
+                        key={index}
+                        className={`message ${msg.getSenderid() === senderId ? 'sender' : 'receiver'}`}
+                    >
+                        <div className="message-username">{msg.getSenderid()}</div>
+                        <div className="message-text">{msg.getText()}</div>
+                        <div className="message-timestamp">{formatTimestamp(msg.getTimestamp())}</div>
+                    </div>
+                ))}
+
                 {messages.map((msg, index) => (
                     <div
                         key={index}
@@ -84,6 +126,7 @@ const Chat = () => {
                         <div className="message-timestamp">{formatTimestamp(msg.timestamp)}</div>
                     </div>
                 ))}
+                <div ref={endOfMessagesRef} />
             </div>
             <div className="input-container">
                 <input
