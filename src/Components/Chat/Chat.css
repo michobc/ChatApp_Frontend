@@ -75,19 +75,22 @@
 }
 
 .input-container input:focus {
-    border-color: #007bff; /* Highlight border color on focus */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle shadow on focus */
+    border-color: #59ff00; /* Highlight border color on focus */
+    box-shadow: 0 0 0 3px rgba(21, 255, 0, 0.25); /* Subtle shadow on focus */
 }
 
 .input-container button {
+    width: 80px;
     padding: 12px 20px;
     border: none;
     border-radius: 30px; /* Match rounded corners of input */
-    background-color: #33bb60; /* Bootstrap primary color */
+    background-color: #33bb60; /* Primary color */
     color: #fff;
     cursor: pointer;
     font-size: 16px; /* Larger text for better readability */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    flex-shrink: 0; 
+    margin-left: 10px; /* Adds spacing between input and button */
 }
 
 .input-container button:hover {
@@ -98,12 +101,35 @@
 .input-container button:active {
     transform: scale(1); /* Reset size on click */
 }
+
 .receiver-info {
-    background-color: #b0eb9c; /* Primary color */
+    background-color: #daead8; /* Primary color */
     color: #4e524e;
     padding: 10px;
     font-size: 18px;
     font-weight: bold;
     text-align: left;
     border-bottom: 1px solid #62d85e; /* Slightly darker border */
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    background-color: #83d27a; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 12px; /* Rounded corners */
+    padding: 4px 8px; /* Compact padding */
+    font-size: 12px; /* Slightly larger font size for readability */
+    cursor: pointer;
+    margin-right: 10px; /* Spacing between button and receiver info */
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-align: center; /* Center text */
+    min-width: 45px; /* Minimum width to keep it compact but not too small */
+    max-width:45px; /* Prevent the button from growing too wide */
+}
+
+.back-button:hover {
+    background-color: #39b300; /* Darker blue on hover */
 }

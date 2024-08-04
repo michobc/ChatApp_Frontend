@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import './Chat.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { formatTimestamp } from '../../Algorithms/calculatTime';
 
 const Chat = () => {
@@ -9,6 +9,7 @@ const Chat = () => {
     const [text, setText] = useState('');
     const [messages, setMessages] = useState([]);
     const connectionRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const connect = async () => {
@@ -62,9 +63,14 @@ const Chat = () => {
         }
     };
 
+    const handleBackClick = () => {
+        navigate(`/${senderId}`); // Navigate to the home page
+    };
+
     return (
         <div className="chat-container">
             <div className="receiver-info">
+                <button className="back-button" onClick={handleBackClick}>Back</button>
                 {receiverId}
             </div>
             <div className="chat-history">
