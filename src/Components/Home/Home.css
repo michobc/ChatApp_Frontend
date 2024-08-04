@@ -1,0 +1,58 @@
+.user-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7f9, #c3cfe2);
+    height: 100vh;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+    font-size: 28px;
+    color: #475346;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 500px; /* Limit width for better appearance */
+}
+
+li {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #2f502c;
+    font-size: 18px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: #f2f2f2;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:focus {
+    outline: none;
+}
